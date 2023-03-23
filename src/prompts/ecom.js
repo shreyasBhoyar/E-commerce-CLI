@@ -64,10 +64,24 @@ const createInquirer = (prods) => {
       message: "Quantity",
       default : 1,
       askAnswered : true,
-      validate: (answer) => {
-        if (isNaN(answer) || Number(answer)<=0) {
+      validate: (Quantity) => {
+        if (isNaN(Quantity)) {
+          return "Enter numerical value"
+        }else if( Number(Quantity)<=0){
           return "Please enter a number greater than 0";
         }
+        // console.log(typeof Quantity)
+        // console.log(Quantity)
+        // if(parseInt(Quantity)){
+      
+        //   console.log("Condition executed")
+        //   return false;
+        // }
+        // else if(typeof Quantity!=="string"){
+        //   console.log("Condition executed")
+        //   return false;
+        // }
+        this.name=Quantity;
         return true;
       },
     },
@@ -88,7 +102,10 @@ const createInquirer = (prods) => {
       name: "username",
       message: "Enter name",
       validate(val) {
-        return val!=="" 
+        if(val.trim()===""){
+          return "Please enter username"
+        }
+        return true
       },
     })
     .then((user) => {
